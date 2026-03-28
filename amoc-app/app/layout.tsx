@@ -1,77 +1,76 @@
+import type { ReactNode } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+
+const navSections = [
+  {
+    label: "Overview",
+    links: [{ href: "/", text: "Dashboard" }],
+  },
+  {
+    label: "Data Entry",
+    links: [{ href: "/performance/daily-entry", text: "Daily KPI Entry" }],
+  },
+  {
+    label: "Performance",
+    links: [
+      { href: "/performance/scorecards", text: "Store Scorecards" },
+      { href: "/performance/trends", text: "Trends & Analysis" },
+    ],
+  },
+  {
+    label: "Reporting",
+    links: [
+      { href: "/reporting/daily-update", text: "Daily Update Builder" },
+      { href: "/reporting/weekly-update", text: "Weekly Update Builder" },
+    ],
+  },
+];
+
+const upcomingItems = ["OSA", "Resources", "People & Development"];
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <div className="amoc-shell">
           <aside className="amoc-sidebar">
             <div className="amoc-brand">
-              <p className="amoc-brand-kicker">AMOC</p>
-              <h1 className="amoc-brand-title">Area Manager Operations Centre</h1>
+              <Link href="/" className="amoc-brand-logo-link" aria-label="AMOC dashboard home">
+                <Image src="/amoc-logo.png" alt="AMOC logo" width={220} height={72} className="amoc-brand-logo" priority />
+              </Link>
               <p className="amoc-brand-subtitle">
-                Performance, reporting, planning, and operational leadership in one place.
+                Area Manager Operations Centre
+                <br />
+                Performance, reporting, and leadership in one command centre.
               </p>
             </div>
 
-            <div className="amoc-nav-group">
-              <p className="amoc-nav-label">Overview</p>
-              <div className="amoc-nav-list">
-                <a className="amoc-nav-link" href="/">
-                  Dashboard
-                </a>
+            {navSections.map((section) => (
+              <div className="amoc-nav-group" key={section.label}>
+                <p className="amoc-nav-label">{section.label}</p>
+                <div className="amoc-nav-list">
+                  {section.links.map((link) => (
+                    <Link key={link.href} className="amoc-nav-link" href={link.href}>
+                      {link.text}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
 
-            <div className="amoc-nav-group">
-              <p className="amoc-nav-label">Data Entry</p>
-              <div className="amoc-nav-list">
-                <a className="amoc-nav-link" href="/performance/daily-entry">
-                  Daily KPI Entry
-                </a>
-              </div>
-            </div>
-
-            <div className="amoc-nav-group">
-              <p className="amoc-nav-label">Performance</p>
-              <div className="amoc-nav-list">
-                <a className="amoc-nav-link" href="/performance/scorecards">
-                  Store Scorecards
-                </a>
-                <a className="amoc-nav-link" href="/performance/trends">
-                  Trends & Analysis
-                </a>
-              </div>
-            </div>
-
-            <div className="amoc-nav-group">
-              <p className="amoc-nav-label">Reporting</p>
-              <div className="amoc-nav-list">
-                <a className="amoc-nav-link" href="/reporting/daily-update">
-                  Daily Update Builder
-                </a>
-                <a className="amoc-nav-link" href="/reporting/weekly-update">
-                  Weekly Update Builder
-                </a>
-              </div>
-            </div>
-
-            <div className="amoc-nav-group">
+            <div className="amoc-nav-group amoc-nav-group-last">
               <p className="amoc-nav-label">Coming Next</p>
               <div className="amoc-nav-list">
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  OSA
-                </span>
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  Resources
-                </span>
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  People & Development
-                </span>
+                {upcomingItems.map((item) => (
+                  <span key={item} className="amoc-nav-link amoc-nav-link-muted">
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
           </aside>
@@ -80,9 +79,7 @@ export default function RootLayout({
             <header className="amoc-topbar">
               <div>
                 <h2 className="amoc-topbar-title">AMOC Platform</h2>
-                <p className="amoc-topbar-subtitle">
-                  Structured performance management for Area Managers
-                </p>
+                <p className="amoc-topbar-subtitle">Structured performance management for Area Managers</p>
               </div>
 
               <div className="amoc-topbar-badge">Phase 1 Build</div>

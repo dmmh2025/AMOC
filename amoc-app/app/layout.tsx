@@ -28,16 +28,22 @@ export default function RootLayout({
             </div>
 
             <div className="amoc-nav-group">
-              <p className="amoc-nav-label">Performance</p>
+              <p className="amoc-nav-label">Data Entry</p>
               <div className="amoc-nav-list">
                 <a className="amoc-nav-link" href="/performance/daily-entry">
-                  Daily Performance Entry
+                  Daily KPI Entry
                 </a>
+              </div>
+            </div>
+
+            <div className="amoc-nav-group">
+              <p className="amoc-nav-label">Performance</p>
+              <div className="amoc-nav-list">
                 <a className="amoc-nav-link" href="/performance/scorecards">
                   Store Scorecards
                 </a>
                 <a className="amoc-nav-link" href="/performance/trends">
-                  Trends &amp; Analysis
+                  Trends & Analysis
                 </a>
               </div>
             </div>
@@ -57,9 +63,15 @@ export default function RootLayout({
             <div className="amoc-nav-group">
               <p className="amoc-nav-label">Coming Next</p>
               <div className="amoc-nav-list">
-                <span className="amoc-nav-link amoc-nav-link-muted">Calendar</span>
-                <span className="amoc-nav-link amoc-nav-link-muted">Resources</span>
-                <span className="amoc-nav-link amoc-nav-link-muted">People &amp; Development</span>
+                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+                  OSA
+                </span>
+                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+                  Resources
+                </span>
+                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+                  People & Development
+                </span>
               </div>
             </div>
           </aside>
@@ -73,10 +85,7 @@ export default function RootLayout({
                 </p>
               </div>
 
-              <div className="amoc-topbar-badge">
-                <span>●</span>
-                <span>Phase 1 Build</span>
-              </div>
+              <div className="amoc-topbar-badge">Phase 1 Build</div>
             </header>
 
             <div className="amoc-page">{children}</div>

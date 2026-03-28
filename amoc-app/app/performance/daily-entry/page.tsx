@@ -13,6 +13,7 @@ export default function DailyKpiEntryPage() {
     "Extreme Late %",
     "Sales",
     "Labour Cost",
+    "Additional Hours",
     "Ideal Food Cost",
     "Actual Food Cost",
     "Total Calls",

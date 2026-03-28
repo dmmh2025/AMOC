@@ -11,11 +11,10 @@ export default function RootLayout({
         <div className="amoc-shell">
           <aside className="amoc-sidebar">
             <div className="amoc-brand">
-              <p className="amoc-brand-kicker">AMOC</p>
-              <h1 className="amoc-brand-title">Area Manager Operations Centre</h1>
-              <p className="amoc-brand-subtitle">
-                Performance, reporting, planning, and operational leadership in one place.
-              </p>
+              <div className="amoc-logo-wrap">
+                <img src="/amoc-logo.png" alt="AMOC Logo" className="amoc-logo" />
+              </div>
+              <div className="amoc-brand-divider" />
             </div>
 
             <div className="amoc-nav-group">
@@ -43,7 +42,7 @@ export default function RootLayout({
                   Store Scorecards
                 </a>
                 <a className="amoc-nav-link" href="/performance/trends">
-                  Trends & Analysis
+                  Trends &amp; Analysis
                 </a>
               </div>
             </div>
@@ -61,28 +60,29 @@ export default function RootLayout({
             </div>
 
             <div className="amoc-nav-group">
-  <p className="amoc-nav-label">Planning</p>
-  <div className="amoc-nav-list">
-    <a className="amoc-nav-link" href="/calendar">
-      Calendar
-    </a>
-  </div>
-</div>
+              <p className="amoc-nav-label">Planning</p>
+              <div className="amoc-nav-list">
+                <a className="amoc-nav-link" href="/calendar">
+                  Calendar
+                </a>
+              </div>
+            </div>
 
-<div className="amoc-nav-group">
-  <p className="amoc-nav-label">Coming Next</p>
-  <div className="amoc-nav-list">
-    <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-      OSA
-    </span>
-    <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-      Resources
-    </span>
-    <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-      People & Development
-    </span>
-  </div>
-</div>
+            <div className="amoc-nav-group">
+              <p className="amoc-nav-label">Coming Next</p>
+              <div className="amoc-nav-list">
+                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+                  OSA
+                </span>
+                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+                  Resources
+                </span>
+                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+                  People &amp; Development
+                </span>
+              </div>
+            </div>
+          </aside>
 
           <div className="amoc-main">
             <header className="amoc-topbar">

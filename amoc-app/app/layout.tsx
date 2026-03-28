@@ -37,7 +37,7 @@ export default function RootLayout({
                   Store Scorecards
                 </a>
                 <a className="amoc-nav-link" href="/performance/trends">
-                  Trends & Analysis
+                  Trends &amp; Analysis
                 </a>
               </div>
             </div>
@@ -57,15 +57,9 @@ export default function RootLayout({
             <div className="amoc-nav-group">
               <p className="amoc-nav-label">Coming Next</p>
               <div className="amoc-nav-list">
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  Calendar
-                </span>
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  Resources
-                </span>
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  People & Development
-                </span>
+                <span className="amoc-nav-link amoc-nav-link-muted">Calendar</span>
+                <span className="amoc-nav-link amoc-nav-link-muted">Resources</span>
+                <span className="amoc-nav-link amoc-nav-link-muted">People &amp; Development</span>
               </div>
             </div>
           </aside>
@@ -79,7 +73,10 @@ export default function RootLayout({
                 </p>
               </div>
 
-              <div className="amoc-topbar-badge">Phase 1 Build</div>
+              <div className="amoc-topbar-badge">
+                <span>●</span>
+                <span>Phase 1 Build</span>
+              </div>
             </header>
 
             <div className="amoc-page">{children}</div>

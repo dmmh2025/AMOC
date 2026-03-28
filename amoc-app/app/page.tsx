@@ -1,4 +1,3 @@
-
 export default function DashboardPage() {
   const kpiCards = [
     { title: "Area Sales", value: "£0", subtext: "vs target £0" },
@@ -22,175 +21,138 @@ export default function DashboardPage() {
   ];
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#f3f4f6",
-        padding: "32px 20px",
-        fontFamily: "Arial, sans-serif",
-        color: "#111827",
-      }}
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "28px" }}>
-          <p
-            style={{
-              margin: 0,
-              fontSize: "14px",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "#6b7280",
-            }}
-          >
-            AMOC
-          </p>
-          <h1
-            style={{
-              margin: "8px 0 0 0",
-              fontSize: "40px",
-              lineHeight: 1.1,
-            }}
-          >
-            Area Manager Operations Centre
-          </h1>
-          <p
-            style={{
-              margin: "10px 0 0 0",
-              fontSize: "18px",
-              color: "#4b5563",
-            }}
-          >
-            Central dashboard for performance, reporting, and operational focus.
-          </p>
-        </div>
+    <main>
+      <div style={{ marginBottom: "28px" }}>
+        <p
+          style={{
+            margin: 0,
+            fontSize: "14px",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "#6b7280",
+          }}
+        >
+          Dashboard
+        </p>
+        <h1
+          style={{
+            margin: "8px 0 0 0",
+            fontSize: "38px",
+            lineHeight: 1.1,
+          }}
+        >
+          Area Manager Overview
+        </h1>
+        <p
+          style={{
+            margin: "10px 0 0 0",
+            fontSize: "18px",
+            color: "#4b5563",
+          }}
+        >
+          Central snapshot for performance, priorities, and reporting.
+        </p>
+      </div>
 
-        <section style={{ marginBottom: "28px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "16px",
-            }}
-          >
-            {kpiCards.map((card) => (
-              <div
-                key={card.title}
-                style={{
-                  background: "#ffffff",
-                  borderRadius: "16px",
-                  padding: "20px",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-                }}
-              >
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    color: "#6b7280",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {card.title}
-                </p>
-                <p
-                  style={{
-                    margin: "10px 0 6px 0",
-                    fontSize: "34px",
-                    fontWeight: 700,
-                  }}
-                >
-                  {card.value}
-                </p>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: "14px",
-                    color: "#6b7280",
-                  }}
-                >
-                  {card.subtext}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
+      <section style={{ marginBottom: "24px" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "20px",
-            alignItems: "start",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "16px",
           }}
         >
-          <section
-            style={{
-              background: "#ffffff",
-              borderRadius: "16px",
-              padding: "24px",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-            }}
-          >
-            <h2
-              style={{
-                margin: "0 0 16px 0",
-                fontSize: "24px",
-              }}
-            >
-              Today&apos;s Priorities
-            </h2>
-
-            <ul style={{ margin: 0, paddingLeft: "20px", color: "#374151" }}>
-              {priorityItems.map((item) => (
-                <li key={item} style={{ marginBottom: "12px", fontSize: "16px" }}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section
-            style={{
-              background: "#ffffff",
-              borderRadius: "16px",
-              padding: "24px",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-            }}
-          >
-            <h2
-              style={{
-                margin: "0 0 16px 0",
-                fontSize: "24px",
-              }}
-            >
-              Quick Links
-            </h2>
-
-            <div style={{ display: "grid", gap: "12px" }}>
-              {quickLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  style={{
-                    display: "block",
-                    textDecoration: "none",
-                    background: "#f9fafb",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "12px",
-                    padding: "14px 16px",
-                    color: "#111827",
-                    fontWeight: 600,
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
+          {kpiCards.map((card) => (
+            <div key={card.title} className="amoc-panel">
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  color: "#6b7280",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {card.title}
+              </p>
+              <p
+                style={{
+                  margin: "10px 0 6px 0",
+                  fontSize: "34px",
+                  fontWeight: 700,
+                }}
+              >
+                {card.value}
+              </p>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "14px",
+                  color: "#6b7280",
+                }}
+              >
+                {card.subtext}
+              </p>
             </div>
-          </section>
+          ))}
         </div>
+      </section>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          gap: "20px",
+          alignItems: "start",
+        }}
+      >
+        <section className="amoc-panel">
+          <h2
+            style={{
+              margin: "0 0 16px 0",
+              fontSize: "24px",
+            }}
+          >
+            Today&apos;s Priorities
+          </h2>
+
+          <ul style={{ margin: 0, paddingLeft: "20px", color: "#374151" }}>
+            {priorityItems.map((item) => (
+              <li key={item} style={{ marginBottom: "12px", fontSize: "16px" }}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="amoc-panel">
+          <h2
+            style={{
+              margin: "0 0 16px 0",
+              fontSize: "24px",
+            }}
+          >
+            Quick Links
+          </h2>
+
+          <div style={{ display: "grid", gap: "12px" }}>
+            {quickLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="amoc-panel-soft"
+                style={{
+                  textDecoration: "none",
+                  fontWeight: 700,
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

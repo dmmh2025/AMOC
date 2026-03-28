@@ -61,20 +61,28 @@ export default function RootLayout({
             </div>
 
             <div className="amoc-nav-group">
-              <p className="amoc-nav-label">Coming Next</p>
-              <div className="amoc-nav-list">
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  OSA
-                </span>
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  Resources
-                </span>
-                <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
-                  People & Development
-                </span>
-              </div>
-            </div>
-          </aside>
+  <p className="amoc-nav-label">Planning</p>
+  <div className="amoc-nav-list">
+    <a className="amoc-nav-link" href="/calendar">
+      Calendar
+    </a>
+  </div>
+</div>
+
+<div className="amoc-nav-group">
+  <p className="amoc-nav-label">Coming Next</p>
+  <div className="amoc-nav-list">
+    <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+      OSA
+    </span>
+    <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+      Resources
+    </span>
+    <span className="amoc-nav-link" style={{ opacity: 0.6, cursor: "default" }}>
+      People & Development
+    </span>
+  </div>
+</div>
 
           <div className="amoc-main">
             <header className="amoc-topbar">

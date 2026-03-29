@@ -1,5 +1,5 @@
 export default function DailyKpiEntryPage() {
-  const stores = ["Downpatrick", "Kilkeel", "Newcastle"];
+  const stores: string[] = [];
 
   const inputStyle = {
     width: "100%",
@@ -22,6 +22,23 @@ export default function DailyKpiEntryPage() {
     borderBottom: "1px solid #e5e7eb",
     verticalAlign: "middle" as const,
   };
+
+  const emptyState = (
+    <div
+      style={{
+        padding: "18px",
+        borderRadius: "12px",
+        background: "#f9fafb",
+        border: "1px solid #e5e7eb",
+        color: "#6b7280",
+        lineHeight: 1.6,
+      }}
+    >
+      No stores loaded yet.
+      <br />
+      Once Supabase is connected, this page will load active stores from the selected area.
+    </div>
+  );
 
   return (
     <main>
@@ -54,8 +71,8 @@ export default function DailyKpiEntryPage() {
             color: "#4b5563",
           }}
         >
-          Enter daily service, cost control, and KPI data by store. Weekly and WTD reporting will
-          be calculated from these inputs.
+          Enter daily service, cost control, and KPI data by area. Stores should load dynamically
+          based on the selected area and the logged-in user’s access.
         </p>
       </div>
 
@@ -77,7 +94,9 @@ export default function DailyKpiEntryPage() {
           <div>
             <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>Area</label>
             <select style={inputStyle}>
-              <option>Mourne Area</option>
+              <option>Select Area</option>
+              <option>Area Placeholder 1</option>
+              <option>Area Placeholder 2</option>
             </select>
           </div>
 
@@ -102,56 +121,60 @@ export default function DailyKpiEntryPage() {
           </p>
         </div>
 
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            minWidth: "1100px",
-          }}
-        >
-          <thead>
-            <tr style={{ background: "#f9fafb" }}>
-              <th style={thStyle}>Store</th>
-              <th style={thStyle}>Total Orders</th>
-              <th style={thStyle}>Total Deliveries</th>
-              <th style={thStyle}>DOT %</th>
-              <th style={thStyle}>Rack Time (mins)</th>
-              <th style={thStyle}>Load Time (mins)</th>
-              <th style={thStyle}>R&amp;L (auto)</th>
-              <th style={thStyle}>ADT (mins)</th>
-              <th style={thStyle}>Extreme Lates %</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stores.map((store) => (
-              <tr key={store}>
-                <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
-                <td style={tdStyle}>
-                  <input type="number" step="1" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="1" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={{ ...tdStyle, fontWeight: 700, color: "#00164d" }}>Auto</td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
+        {stores.length === 0 ? (
+          emptyState
+        ) : (
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              minWidth: "1100px",
+            }}
+          >
+            <thead>
+              <tr style={{ background: "#f9fafb" }}>
+                <th style={thStyle}>Store</th>
+                <th style={thStyle}>Total Orders</th>
+                <th style={thStyle}>Total Deliveries</th>
+                <th style={thStyle}>DOT %</th>
+                <th style={thStyle}>Rack Time (mins)</th>
+                <th style={thStyle}>Load Time (mins)</th>
+                <th style={thStyle}>R&amp;L (auto)</th>
+                <th style={thStyle}>ADT (mins)</th>
+                <th style={thStyle}>Extreme Lates %</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stores.map((store) => (
+                <tr key={store}>
+                  <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
+                  <td style={tdStyle}>
+                    <input type="number" step="1" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="1" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={{ ...tdStyle, fontWeight: 700, color: "#00164d" }}>Auto</td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
 
       <section className="amoc-panel" style={{ marginBottom: "24px", overflowX: "auto" }}>
@@ -162,46 +185,50 @@ export default function DailyKpiEntryPage() {
           </p>
         </div>
 
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            minWidth: "900px",
-          }}
-        >
-          <thead>
-            <tr style={{ background: "#f9fafb" }}>
-              <th style={thStyle}>Store</th>
-              <th style={thStyle}>Sales</th>
-              <th style={thStyle}>Labour Cost</th>
-              <th style={thStyle}>Additional Hours</th>
-              <th style={thStyle}>Ideal Food Cost</th>
-              <th style={thStyle}>Actual Food Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stores.map((store) => (
-              <tr key={store}>
-                <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.25" placeholder="+/- hrs" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
+        {stores.length === 0 ? (
+          emptyState
+        ) : (
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              minWidth: "900px",
+            }}
+          >
+            <thead>
+              <tr style={{ background: "#f9fafb" }}>
+                <th style={thStyle}>Store</th>
+                <th style={thStyle}>Sales</th>
+                <th style={thStyle}>Labour Cost</th>
+                <th style={thStyle}>Additional Hours</th>
+                <th style={thStyle}>Ideal Food Cost</th>
+                <th style={thStyle}>Actual Food Cost</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stores.map((store) => (
+                <tr key={store}>
+                  <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.25" placeholder="+/- hrs" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
 
       <section className="amoc-panel" style={{ marginBottom: "24px", overflowX: "auto" }}>
@@ -212,42 +239,46 @@ export default function DailyKpiEntryPage() {
           </p>
         </div>
 
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            minWidth: "900px",
-          }}
-        >
-          <thead>
-            <tr style={{ background: "#f9fafb" }}>
-              <th style={thStyle}>Store</th>
-              <th style={thStyle}>Total Calls</th>
-              <th style={thStyle}>Missed Calls</th>
-              <th style={thStyle}>Weekly AOF %</th>
-              <th style={thStyle}>GPS Tracked %</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stores.map((store) => (
-              <tr key={store}>
-                <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
-                <td style={tdStyle}>
-                  <input type="number" step="1" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="1" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
-                <td style={tdStyle}>
-                  <input type="number" step="0.01" style={inputStyle} />
-                </td>
+        {stores.length === 0 ? (
+          emptyState
+        ) : (
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              minWidth: "900px",
+            }}
+          >
+            <thead>
+              <tr style={{ background: "#f9fafb" }}>
+                <th style={thStyle}>Store</th>
+                <th style={thStyle}>Total Calls</th>
+                <th style={thStyle}>Missed Calls</th>
+                <th style={thStyle}>Weekly AOF %</th>
+                <th style={thStyle}>GPS Tracked %</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stores.map((store) => (
+                <tr key={store}>
+                  <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
+                  <td style={tdStyle}>
+                    <input type="number" step="1" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="1" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                  <td style={tdStyle}>
+                    <input type="number" step="0.01" style={inputStyle} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
 
       <section className="amoc-panel">
@@ -258,34 +289,38 @@ export default function DailyKpiEntryPage() {
           </p>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gap: "14px",
-            marginBottom: "18px",
-          }}
-        >
-          {stores.map((store) => (
-            <div key={store}>
-              <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>
-                {store} Notes
-              </label>
-              <textarea
-                placeholder={`Add notes for ${store}...`}
-                style={{
-                  width: "100%",
-                  minHeight: "90px",
-                  padding: "12px",
-                  borderRadius: "10px",
-                  border: "1px solid #d1d5db",
-                  fontSize: "14px",
-                  resize: "vertical",
-                  fontFamily: "inherit",
-                }}
-              />
-            </div>
-          ))}
-        </div>
+        {stores.length === 0 ? (
+          emptyState
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gap: "14px",
+              marginBottom: "18px",
+            }}
+          >
+            {stores.map((store) => (
+              <div key={store}>
+                <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>
+                  {store} Notes
+                </label>
+                <textarea
+                  placeholder={`Add notes for ${store}...`}
+                  style={{
+                    width: "100%",
+                    minHeight: "90px",
+                    padding: "12px",
+                    borderRadius: "10px",
+                    border: "1px solid #d1d5db",
+                    fontSize: "14px",
+                    resize: "vertical",
+                    fontFamily: "inherit",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         <div
           style={{
@@ -293,6 +328,7 @@ export default function DailyKpiEntryPage() {
             gap: "12px",
             justifyContent: "flex-end",
             flexWrap: "wrap",
+            marginTop: "18px",
           }}
         >
           <button

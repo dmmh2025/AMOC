@@ -1,27 +1,27 @@
 export default function DailyKpiEntryPage() {
   const stores = ["Downpatrick", "Kilkeel", "Newcastle"];
 
-  const headings = [
-    "Store",
-    "Total Orders",
-    "Total Deliveries",
-    "DOT %",
-    "Rack Time",
-    "Load Time",
-    "R&L",
-    "ADT",
-    "Extreme Late %",
-    "Sales",
-    "Labour Cost",
-    "Additional Hours",
-    "Ideal Food Cost",
-    "Actual Food Cost",
-    "Total Calls",
-    "Missed Calls",
-    "Weekly AOF %",
-    "GPS Tracked %",
-    "Notes",
-  ];
+  const inputStyle = {
+    width: "100%",
+    padding: "10px 12px",
+    borderRadius: "8px",
+    border: "1px solid #d1d5db",
+    fontSize: "14px",
+  } as const;
+
+  const thStyle = {
+    textAlign: "left" as const,
+    padding: "12px",
+    borderBottom: "1px solid #e5e7eb",
+    fontSize: "14px",
+    whiteSpace: "nowrap" as const,
+  };
+
+  const tdStyle = {
+    padding: "12px",
+    borderBottom: "1px solid #e5e7eb",
+    verticalAlign: "middle" as const,
+  };
 
   return (
     <main>
@@ -71,29 +71,12 @@ export default function DailyKpiEntryPage() {
             <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>
               Entry Date
             </label>
-            <input
-              type="date"
-              style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "10px",
-                border: "1px solid #d1d5db",
-              }}
-            />
+            <input type="date" style={inputStyle} />
           </div>
 
           <div>
-            <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>
-              Area
-            </label>
-            <select
-              style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "10px",
-                border: "1px solid #d1d5db",
-              }}
-            >
+            <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>Area</label>
+            <select style={inputStyle}>
               <option>Mourne Area</option>
             </select>
           </div>
@@ -102,14 +85,7 @@ export default function DailyKpiEntryPage() {
             <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>
               Submission Status
             </label>
-            <select
-              style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "10px",
-                border: "1px solid #d1d5db",
-              }}
-            >
+            <select style={inputStyle}>
               <option>Draft</option>
               <option>Submitted</option>
               <option>Final</option>
@@ -118,146 +94,204 @@ export default function DailyKpiEntryPage() {
         </div>
       </section>
 
-      <section className="amoc-panel" style={{ overflowX: "auto" }}>
+      <section className="amoc-panel" style={{ marginBottom: "24px", overflowX: "auto" }}>
+        <div style={{ marginBottom: "16px" }}>
+          <h2 style={{ margin: 0, fontSize: "24px" }}>Service</h2>
+          <p style={{ margin: "6px 0 0 0", color: "#6b7280" }}>
+            Daily service inputs used to calculate WTD and weekly service performance.
+          </p>
+        </div>
+
         <table
           style={{
             width: "100%",
             borderCollapse: "collapse",
-            minWidth: "1900px",
+            minWidth: "1100px",
           }}
         >
           <thead>
             <tr style={{ background: "#f9fafb" }}>
-              {headings.map((heading) => (
-                <th
-                  key={heading}
-                  style={{
-                    textAlign: "left",
-                    padding: "12px",
-                    borderBottom: "1px solid #e5e7eb",
-                    fontSize: "14px",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {heading}
-                </th>
-              ))}
+              <th style={thStyle}>Store</th>
+              <th style={thStyle}>Total Orders</th>
+              <th style={thStyle}>Total Deliveries</th>
+              <th style={thStyle}>DOT %</th>
+              <th style={thStyle}>Rack Time (mins)</th>
+              <th style={thStyle}>Load Time (mins)</th>
+              <th style={thStyle}>R&amp;L (auto)</th>
+              <th style={thStyle}>ADT (mins)</th>
+              <th style={thStyle}>Extreme Lates %</th>
             </tr>
           </thead>
-
           <tbody>
             {stores.map((store) => (
               <tr key={store}>
-                <td
-                  style={{
-                    padding: "12px",
-                    borderBottom: "1px solid #e5e7eb",
-                    fontWeight: 700,
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {store}
+                <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
+                <td style={tdStyle}>
+                  <input type="number" step="1" style={inputStyle} />
                 </td>
-
-                {[
-                  "total_orders",
-                  "total_deliveries",
-                  "dot_pct",
-                  "rack_time",
-                  "load_time",
-                ].map((field) => (
-                  <td
-                    key={field}
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <input
-                      type="number"
-                      step="0.01"
-                      style={{
-                        width: "110px",
-                        padding: "10px",
-                        borderRadius: "8px",
-                        border: "1px solid #d1d5db",
-                      }}
-                    />
-                  </td>
-                ))}
-
-                <td
-                  style={{
-                    padding: "12px",
-                    borderBottom: "1px solid #e5e7eb",
-                    fontWeight: 700,
-                    color: "#006491",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Auto
+                <td style={tdStyle}>
+                  <input type="number" step="1" style={inputStyle} />
                 </td>
-
-                {[
-                  "adt",
-                  "extreme_late_pct",
-                  "sales",
-                  "labour_cost",
-                  "ideal_food_cost",
-                  "actual_food_cost",
-                  "total_calls",
-                  "missed_calls",
-                  "weekly_aof",
-                  "gps_tracked_pct",
-                ].map((field) => (
-                  <td
-                    key={field}
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <input
-                      type="number"
-                      step="0.01"
-                      style={{
-                        width: "110px",
-                        padding: "10px",
-                        borderRadius: "8px",
-                        border: "1px solid #d1d5db",
-                      }}
-                    />
-                  </td>
-                ))}
-
-                <td
-                  style={{
-                    padding: "12px",
-                    borderBottom: "1px solid #e5e7eb",
-                  }}
-                >
-                  <input
-                    type="text"
-                    placeholder="Add notes..."
-                    style={{
-                      width: "220px",
-                      padding: "10px",
-                      borderRadius: "8px",
-                      border: "1px solid #d1d5db",
-                    }}
-                  />
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={{ ...tdStyle, fontWeight: 700, color: "#00164d" }}>Auto</td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </section>
+
+      <section className="amoc-panel" style={{ marginBottom: "24px", overflowX: "auto" }}>
+        <div style={{ marginBottom: "16px" }}>
+          <h2 style={{ margin: 0, fontSize: "24px" }}>Cost Control</h2>
+          <p style={{ margin: "6px 0 0 0", color: "#6b7280" }}>
+            Daily sales and cost inputs used to calculate labour and food control properly.
+          </p>
+        </div>
+
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            minWidth: "900px",
+          }}
+        >
+          <thead>
+            <tr style={{ background: "#f9fafb" }}>
+              <th style={thStyle}>Store</th>
+              <th style={thStyle}>Sales</th>
+              <th style={thStyle}>Labour Cost</th>
+              <th style={thStyle}>Additional Hours</th>
+              <th style={thStyle}>Ideal Food Cost</th>
+              <th style={thStyle}>Actual Food Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stores.map((store) => (
+              <tr key={store}>
+                <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.25" placeholder="+/- hrs" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section className="amoc-panel" style={{ marginBottom: "24px", overflowX: "auto" }}>
+        <div style={{ marginBottom: "16px" }}>
+          <h2 style={{ margin: 0, fontSize: "24px" }}>Other KPI</h2>
+          <p style={{ margin: "6px 0 0 0", color: "#6b7280" }}>
+            Supporting measures used for calls, quality, and tracked delivery performance.
+          </p>
+        </div>
+
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            minWidth: "900px",
+          }}
+        >
+          <thead>
+            <tr style={{ background: "#f9fafb" }}>
+              <th style={thStyle}>Store</th>
+              <th style={thStyle}>Total Calls</th>
+              <th style={thStyle}>Missed Calls</th>
+              <th style={thStyle}>Weekly AOF %</th>
+              <th style={thStyle}>GPS Tracked %</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stores.map((store) => (
+              <tr key={store}>
+                <td style={{ ...tdStyle, fontWeight: 700 }}>{store}</td>
+                <td style={tdStyle}>
+                  <input type="number" step="1" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="1" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+                <td style={tdStyle}>
+                  <input type="number" step="0.01" style={inputStyle} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section className="amoc-panel">
+        <div style={{ marginBottom: "16px" }}>
+          <h2 style={{ margin: 0, fontSize: "24px" }}>Daily Notes</h2>
+          <p style={{ margin: "6px 0 0 0", color: "#6b7280" }}>
+            Add any context that will help explain performance or support reporting later.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gap: "14px",
+            marginBottom: "18px",
+          }}
+        >
+          {stores.map((store) => (
+            <div key={store}>
+              <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>
+                {store} Notes
+              </label>
+              <textarea
+                placeholder={`Add notes for ${store}...`}
+                style={{
+                  width: "100%",
+                  minHeight: "90px",
+                  padding: "12px",
+                  borderRadius: "10px",
+                  border: "1px solid #d1d5db",
+                  fontSize: "14px",
+                  resize: "vertical",
+                  fontFamily: "inherit",
+                }}
+              />
+            </div>
+          ))}
+        </div>
 
         <div
           style={{
             display: "flex",
             gap: "12px",
             justifyContent: "flex-end",
-            marginTop: "20px",
             flexWrap: "wrap",
           }}
         >
@@ -277,7 +311,7 @@ export default function DailyKpiEntryPage() {
 
           <button
             style={{
-              background: "#006491",
+              background: "#00164d",
               color: "#ffffff",
               border: "none",
               borderRadius: "10px",
